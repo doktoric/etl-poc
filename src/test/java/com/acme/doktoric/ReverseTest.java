@@ -15,23 +15,15 @@ public class ReverseTest extends BaseMorphlineTest {
 
     @Test
     public void testReverseFunctionReturnLowerCasedString() throws Exception {
-        morphline = createMorphline("test-morphlines/simpleReverse");
-        Record record = new Record();
-        record.put(Fields.MESSAGE, TestBasedFileReader.getFileContent("input/simpleReverse"));
-        assertTrue(morphline.process(record));
-        Record expected = new Record();
-        expected.put(Fields.MESSAGE, TestBasedFileReader.getFileContent("expected/simpleReverse"));
-        assertThat(expected, equalTo(collector.getRecords().get(0)));
+        assertResult("test-morphlines/reverse/simpleReverse",
+                "input/reverse/simpleReverse",
+                "expected/reverse/simpleReverse");
     }
 
     @Test
     public void testReverseFunctionWithMoreLineReturnLowerCasedString() throws Exception {
-        morphline = createMorphline("test-morphlines/simpleReverse");
-        Record record = new Record();
-        record.put(Fields.MESSAGE, TestBasedFileReader.getFileContent("input/simpleReverseWithMoreLine"));
-        assertTrue(morphline.process(record));
-        Record expected = new Record();
-        expected.put(Fields.MESSAGE, TestBasedFileReader.getFileContent("expected/simpleReverseWithMoreLine"));
-        assertThat(expected, equalTo(collector.getRecords().get(0)));
+        assertResult("test-morphlines/reverse/simpleReverse",
+                "input/reverse/simpleReverseWithMoreLine",
+                "expected/reverse/simpleReverseWithMoreLine");
     }
 }

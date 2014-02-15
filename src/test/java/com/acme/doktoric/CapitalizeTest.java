@@ -15,23 +15,15 @@ public class CapitalizeTest extends BaseMorphlineTest {
 
     @Test
     public void testCapitalizeFunctionReturnLowerCasedString() throws Exception {
-        morphline = createMorphline("test-morphlines/simpleCapitalize");
-        Record record = new Record();
-        record.put(Fields.MESSAGE, TestBasedFileReader.getFileContent("input/simpleCapitalize"));
-        assertTrue(morphline.process(record));
-        Record expected = new Record();
-        expected.put(Fields.MESSAGE, TestBasedFileReader.getFileContent("expected/simpleCapitalize"));
-        assertThat(expected, equalTo(collector.getRecords().get(0)));
+        assertResult("test-morphlines/capitalize/simpleCapitalize",
+                "input/capitalize/simpleCapitalize",
+                "expected/capitalize/simpleCapitalize");
     }
 
     @Test
     public void testCapitalizeFunctionWithMoreLineReturnLowerCasedString() throws Exception {
-        morphline = createMorphline("test-morphlines/simpleCapitalize");
-        Record record = new Record();
-        record.put(Fields.MESSAGE, TestBasedFileReader.getFileContent("input/simpleCapitalizeWithMoreLine"));
-        assertTrue(morphline.process(record));
-        Record expected = new Record();
-        expected.put(Fields.MESSAGE, TestBasedFileReader.getFileContent("expected/simpleCapitalizeWithMoreLine"));
-        assertThat(expected, equalTo(collector.getRecords().get(0)));
+        assertResult(  "test-morphlines/capitalize/simpleCapitalize",
+                "input/capitalize/simpleCapitalizeWithMoreLine",
+                "expected/capitalize/simpleCapitalizeWithMoreLine");
     }
 }

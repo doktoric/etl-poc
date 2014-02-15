@@ -28,6 +28,11 @@ public class TestBasedFileReader {
         return StringUtils.join("", lines);
     }
 
+    public static List<String> getFileContentAsList(String path) throws IOException {
+        List<String> lines = Files.readAllLines(Paths.get(getFile(path).getPath()), Charset.defaultCharset());
+        return lines;
+    }
+
 
 
 }
