@@ -12,24 +12,24 @@ import java.util.Collections;
 import java.util.ListIterator;
 import java.util.Locale;
 
-public class ToLowerCaseBuilder implements CommandBuilder {
+public class ToUpperCaseBuilder implements CommandBuilder {
 
     @Override
     public Collection<String> getNames() {
-        return Collections.singletonList("toLowerCase");
+        return Collections.singletonList("toUpperCase");
     }
 
     @Override
     public Command build(Config config, Command command, Command command2, MorphlineContext morphlineContext) {
-        return new ToLowerCase(this, config, command, command2, morphlineContext);
+        return new ToUpperCase(this, config, command, command2, morphlineContext);
     }
 
-    private static final class ToLowerCase extends AbstractCommand {
+    private static final class ToUpperCase extends AbstractCommand {
 
         private final String fieldName;
         private final Locale locale;
 
-        public ToLowerCase(CommandBuilder builder, Config config, Command parent, Command child, MorphlineContext context) {
+        public ToUpperCase(CommandBuilder builder, Config config, Command parent, Command child, MorphlineContext context) {
             super(builder, config, parent, child, context);
             this.fieldName = getConfigs().getString(config, "field");
             this.locale = getConfigs().getLocale(config, "locale", Locale.ROOT);
@@ -47,7 +47,7 @@ public class ToLowerCaseBuilder implements CommandBuilder {
         }
 
         private Object transformFieldValue(Object value) {
-            return value.toString().toLowerCase(locale);
+            return value.toString().toUpperCase(locale);
         }
 
         @Override
